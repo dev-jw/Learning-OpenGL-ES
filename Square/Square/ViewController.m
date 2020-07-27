@@ -8,14 +8,13 @@
 
 #import "ViewController.h"
 #import <OpenGLES/ES2/gl.h>
+#import "CoreAnimation.h"
 
 @interface ViewController ()
 
 @property (nonatomic, strong) EAGLContext *mContext;
 
 @property (nonatomic, strong) GLKBaseEffect *mEffect;
-
-@property (nonatomic , assign) int mCount;
 
 @property (nonatomic , assign) float mDegreeX;
 
@@ -30,8 +29,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self setupContext];
-    [self setupVertexData];
     [self setupTexture];
+    [self setupVertexData];
 }
 
 - (void)setupContext {
@@ -46,68 +45,84 @@
     view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
     view.context = self.mContext;
     [EAGLContext setCurrentContext:self.mContext];
+    
+    glEnable(GL_DEPTH_TEST);
+    
 }
 
 - (void)setupVertexData {
     GLfloat vertices[] = {
-        0.5f, 0.5f, 0.0f,       0.0f, 0.5f, 0.0f,       1.0f, 1.0f,//右上
-        0.5f, -0.5f, 0.0f,      0.0f, 0.0f, 0.5f,       1.0f, 0.0f,//右下
-        -0.5f, -0.5f, 0.0f,     0.5f, 0.0f, 1.0f,       0.0f, 0.0f,//左下
-        -0.5f, 0.5f, 0.0f,      0.0f, 0.0f, 0.5f,       0.0f, 1.0f,//左上
+        -0.5f, -0.5f, -0.5f,  0.0f,  0.0f,
+         0.5f, -0.5f, -0.5f,  1.0f,  0.0f,
+         0.5f,  0.5f, -0.5f,  1.0f,  1.0f,
+         0.5f,  0.5f, -0.5f,  1.0f,  1.0f,
+        -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,
+        -0.5f, -0.5f, -0.5f,  0.0f,  0.0f,
+
+        -0.5f, -0.5f,  0.5f,  0.0f,  0.0f,
+         0.5f, -0.5f,  0.5f,  1.0f,  0.0f,
+         0.5f,  0.5f,  0.5f,  1.0f,  1.0f,
+         0.5f,  0.5f,  0.5f,  1.0f,  1.0f,
+        -0.5f,  0.5f,  0.5f,  0.0f,  1.0f,
+        -0.5f, -0.5f,  0.5f,  0.0f,  0.0f,
+
+        -0.5f,  0.5f,  0.5f,  1.0f,  0.0f,
+        -0.5f,  0.5f, -0.5f,  1.0f,  1.0f,
+        -0.5f, -0.5f, -0.5f,  0.0f,  1.0f,
+        -0.5f, -0.5f, -0.5f,  0.0f,  1.0f,
+        -0.5f, -0.5f,  0.5f,  0.0f,  0.0f,
+        -0.5f,  0.5f,  0.5f,  1.0f,  0.0f,
+
+         0.5f,  0.5f,  0.5f,  1.0f,  0.0f,
+         0.5f,  0.5f, -0.5f,  1.0f,  1.0f,
+         0.5f, -0.5f, -0.5f,  0.0f,  1.0f,
+         0.5f, -0.5f, -0.5f,  0.0f,  1.0f,
+         0.5f, -0.5f,  0.5f,  0.0f,  0.0f,
+         0.5f,  0.5f,  0.5f,  1.0f,  0.0f,
+
+        -0.5f, -0.5f, -0.5f,  0.0f,  1.0f,
+         0.5f, -0.5f, -0.5f,  1.0f,  1.0f,
+         0.5f, -0.5f,  0.5f,  1.0f,  0.0f,
+         0.5f, -0.5f,  0.5f,  1.0f,  0.0f,
+        -0.5f, -0.5f,  0.5f,  0.0f,  0.0f,
+        -0.5f, -0.5f, -0.5f,  0.0f,  1.0f,
+
+        -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,
+         0.5f,  0.5f, -0.5f,  1.0f,  1.0f,
+         0.5f,  0.5f,  0.5f,  1.0f,  0.0f,
+         0.5f,  0.5f,  0.5f,  1.0f,  0.0f,
+        -0.5f,  0.5f,  0.5f,  0.0f,  0.0f,
+        -0.5f,  0.5f, -0.5f,  0.0f,  1.0f
     };
-    
-    GLubyte indices[] = { // 注意索引从0开始!
-        0,  1, 3,
-        1,  2, 3,
-        4,  5, 6,
-        4,  6, 7,
-        8,  9, 10,
-        8,  10, 11,
-        12, 13, 14,
-        12, 14, 15,
-        16, 17, 18,
-        16, 18, 19,
-        20, 21, 22,
-        20, 22, 23,
-    };
-    
-    self.mCount = sizeof(indices) / sizeof(GLuint);
-    
+        
     GLuint buffer;
     glGenBuffers(1, &buffer);
     glBindBuffer(GL_ARRAY_BUFFER, buffer);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
     
-    GLuint index;
-    glGenBuffers(1, &index);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, index);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
-    
     glEnableVertexAttribArray(GLKVertexAttribPosition);
-    glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 8, (GLfloat *)NULL);
+    glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 5, (GLfloat *)NULL);
     //顶点颜色
-    glEnableVertexAttribArray(GLKVertexAttribColor);
-    glVertexAttribPointer(GLKVertexAttribColor, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 8, (GLfloat *)NULL + 3);
     
     glEnableVertexAttribArray(GLKVertexAttribTexCoord0);
-    glVertexAttribPointer(GLKVertexAttribTexCoord0, 2, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 8, (GLfloat *)NULL + 6);
+    glVertexAttribPointer(GLKVertexAttribTexCoord0, 2, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 5, (GLfloat *)NULL + 3);
     
     CGSize size = self.view.bounds.size;
     float aspect = fabs(size.width / size.height);
-    GLKMatrix4 projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(90.0), aspect, 0.1f, 10.f);
+    GLKMatrix4 projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(90.0), aspect, 0.1f, 100.f);
     projectionMatrix = GLKMatrix4Scale(projectionMatrix, 1.0f, 1.0f, 1.0f);
     self.mEffect.transform.projectionMatrix = projectionMatrix;
-    
+
     GLKMatrix4 modelViewMatrix = GLKMatrix4Translate(GLKMatrix4Identity, 0.0f, 0.0f, -2.0f);
     self.mEffect.transform.modelviewMatrix = modelViewMatrix;
-    
+        
         //定时器
     double delayInSeconds = 0.1;
     timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());
     dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC, 0.0);
     dispatch_source_set_event_handler(timer, ^{
         self.mDegreeX += 0.1;
-        
+
     });
     dispatch_resume(timer);
 }
@@ -125,9 +140,11 @@
 
 - (void)update {
     GLKMatrix4 modelViewMatrix = GLKMatrix4Translate(GLKMatrix4Identity, 0.0f, 0.0f, -2.0f);
-    
+
     modelViewMatrix = GLKMatrix4RotateX(modelViewMatrix, self.mDegreeX);
-    
+    modelViewMatrix = GLKMatrix4RotateY(modelViewMatrix, self.mDegreeX);
+    modelViewMatrix = GLKMatrix4RotateZ(modelViewMatrix, self.mDegreeX);
+
     self.mEffect.transform.modelviewMatrix = modelViewMatrix;
 }
 
@@ -139,8 +156,12 @@
     
     [self.mEffect prepareToDraw];
     
-    glDrawElements(GL_TRIANGLES, self.mCount, GL_UNSIGNED_BYTE, 0);
+    glDrawArrays(GL_TRIANGLES, 0, 36);
 }
 
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    CoreAnimation * vc = [[CoreAnimation alloc] init];
+    [self presentViewController:vc animated:true completion:nil];
+}
 
 @end

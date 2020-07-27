@@ -15,6 +15,7 @@
 		3BDAE4B624CDC8030078B898 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BDAE4B424CDC8030078B898 /* LaunchScreen.storyboard */; };
 		3BDAE4B924CDC8030078B898 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BDAE4B824CDC8030078B898 /* main.m */; };
 		3BDAE4C024CDCC240078B898 /* cover.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3BDAE4BF24CDCC240078B898 /* cover.jpg */; };
+		6DC4840724CE71B000F7C30C /* CoreAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC4840624CE71B000F7C30C /* CoreAnimation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,8 @@
 		3BDAE4B724CDC8030078B898 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3BDAE4B824CDC8030078B898 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3BDAE4BF24CDCC240078B898 /* cover.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cover.jpg; sourceTree = "<group>"; };
+		6DC4840524CE71B000F7C30C /* CoreAnimation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreAnimation.h; sourceTree = "<group>"; };
+		6DC4840624CE71B000F7C30C /* CoreAnimation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreAnimation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +73,8 @@
 				3BDAE4AA24CDC8020078B898 /* SceneDelegate.m */,
 				3BDAE4AC24CDC8020078B898 /* ViewController.h */,
 				3BDAE4AD24CDC8020078B898 /* ViewController.m */,
+				6DC4840524CE71B000F7C30C /* CoreAnimation.h */,
+				6DC4840624CE71B000F7C30C /* CoreAnimation.m */,
 				3BDAE4AF24CDC8020078B898 /* Main.storyboard */,
 				3BDAE4B224CDC8030078B898 /* Assets.xcassets */,
 				3BDAE4B424CDC8030078B898 /* LaunchScreen.storyboard */,
@@ -151,6 +156,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3BDAE4AE24CDC8020078B898 /* ViewController.m in Sources */,
+				6DC4840724CE71B000F7C30C /* CoreAnimation.m in Sources */,
 				3BDAE4A824CDC8020078B898 /* AppDelegate.m in Sources */,
 				3BDAE4B924CDC8030078B898 /* main.m in Sources */,
 				3BDAE4AB24CDC8020078B898 /* SceneDelegate.m in Sources */,
