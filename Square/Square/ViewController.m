@@ -102,7 +102,6 @@
     
     glEnableVertexAttribArray(GLKVertexAttribPosition);
     glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 5, (GLfloat *)NULL);
-    //顶点颜色
     
     glEnableVertexAttribArray(GLKVertexAttribTexCoord0);
     glVertexAttribPointer(GLKVertexAttribTexCoord0, 2, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 5, (GLfloat *)NULL + 3);
@@ -141,6 +140,9 @@
 - (void)update {
     GLKMatrix4 modelViewMatrix = GLKMatrix4Translate(GLKMatrix4Identity, 0.0f, 0.0f, -2.0f);
 
+    
+//    modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, self.mDegreeX, 1.0, 1.0, 1.0);
+    
     modelViewMatrix = GLKMatrix4RotateX(modelViewMatrix, self.mDegreeX);
     modelViewMatrix = GLKMatrix4RotateY(modelViewMatrix, self.mDegreeX);
     modelViewMatrix = GLKMatrix4RotateZ(modelViewMatrix, self.mDegreeX);

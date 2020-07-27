@@ -13,6 +13,9 @@
 @end
 
 @implementation CoreAnimation
+{
+    dispatch_source_t timer;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -39,30 +42,40 @@
     transform = CATransform3DMakeTranslation(0, -100, 0);
     transform = CATransform3DRotate(transform, M_PI_2, 1, 0, 0);
     [self addCubeWithCATransform3D:transform];
-
+    
     transform = CATransform3DMakeTranslation(0, 100, 0);
     transform = CATransform3DRotate(transform, -M_PI_2, 1, 0, 0);
     [self addCubeWithCATransform3D:transform];
-
+    
     transform = CATransform3DMakeTranslation(-100, 0, 0);
     transform = CATransform3DRotate(transform, -M_PI_2, 0, 1, 0);
     [self addCubeWithCATransform3D:transform];
-
+    
     transform = CATransform3DMakeTranslation(0, 0, -100);
     transform = CATransform3DRotate(transform, M_PI, 0, 1, 0);
     [self addCubeWithCATransform3D:transform];
-   
+    
     
     static CGFloat angle = 1.0f;
-
-    NSTimer *timer = [NSTimer timerWithTimeInterval:0.01 repeats:true block:^(NSTimer * _Nonnull timer) {
-        
+    double delayInSeconds = 0.1;
+    timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());
+    dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC, 0.0);
+    dispatch_source_set_event_handler(timer, ^{
         CATransform3D transform3d = self.container.layer.sublayerTransform;
         transform3d = CATransform3DRotate(transform3d, angle/180.0f*M_PI, 1.0f, 1.0f, 1.0f);
         self.container.layer.sublayerTransform = transform3d;
-    }];
+        
+    });
+    dispatch_resume(timer);
     
-    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+//    NSTimer *timer = [NSTimer timerWithTimeInterval:0.01 repeats:true block:^(NSTimer * _Nonnull timer) {
+//
+//        CATransform3D transform3d = self.container.layer.sublayerTransform;
+//        transform3d = CATransform3DRotate(transform3d, angle/180.0f*M_PI, 1.0f, 1.0f, 1.0f);
+//        self.container.layer.sublayerTransform = transform3d;
+//    }];
+//
+//    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
 }
 
 - (void)addCubeWithCATransform3D:(CATransform3D)transform {
@@ -70,10 +83,10 @@
     UIImageView *face = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
     face.image = [UIImage imageWithContentsOfFile:filePath];
     [self.container addSubview:face];
-
+    
     CGSize containerSize = self.container.bounds.size;
     face.center = CGPointMake(containerSize.width / 2.0, containerSize.height / 2.0);
-
+    
     face.layer.transform = transform;
 }
 
