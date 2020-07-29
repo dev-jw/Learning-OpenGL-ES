@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B38249C24D1CC2F001D6A8B /* hacker.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3B38249B24D1CC2F001D6A8B /* hacker.jpg */; };
 		6DC1B66024D03CE700F8752B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC1B65F24D03CE700F8752B /* AppDelegate.m */; };
 		6DC1B66324D03CE700F8752B /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC1B66224D03CE700F8752B /* SceneDelegate.m */; };
 		6DC1B66624D03CE700F8752B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC1B66524D03CE700F8752B /* ViewController.m */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3B38249B24D1CC2F001D6A8B /* hacker.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = hacker.jpg; sourceTree = "<group>"; };
 		6DC1B65B24D03CE700F8752B /* Shader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DC1B65E24D03CE700F8752B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		6DC1B65F24D03CE700F8752B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 		6DC1B65D24D03CE700F8752B /* Shader */ = {
 			isa = PBXGroup;
 			children = (
+				3B38249B24D1CC2F001D6A8B /* hacker.jpg */,
 				6DC1B65E24D03CE700F8752B /* AppDelegate.h */,
 				6DC1B65F24D03CE700F8752B /* AppDelegate.m */,
 				6DC1B66124D03CE700F8752B /* SceneDelegate.h */,
@@ -145,6 +148,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6DE4AD5124D113540006643F /* shaderv.vsh in Resources */,
+				3B38249C24D1CC2F001D6A8B /* hacker.jpg in Resources */,
 				6DC1B66E24D03CE900F8752B /* LaunchScreen.storyboard in Resources */,
 				6DC1B66B24D03CE900F8752B /* Assets.xcassets in Resources */,
 				6DC1B66924D03CE700F8752B /* Main.storyboard in Resources */,
@@ -239,7 +243,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -291,7 +295,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -303,6 +307,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = Shader/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -319,6 +324,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = Shader/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

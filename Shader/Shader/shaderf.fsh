@@ -1,3 +1,5 @@
+precision highp float;
+
 varying lowp vec2 varyTextCoord;
 
 uniform sampler2D colorMap;
