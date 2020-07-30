@@ -75,6 +75,7 @@
         0.5f, -0.5f, -1.0f,     1.0f, 0.0f,
         -0.5f, 0.5f, -1.0f,     0.0f, 1.0f,
         -0.5f, -0.5f, -1.0f,    0.0f, 0.0f,
+        
         0.5f, 0.5f, -1.0f,      1.0f, 1.0f,
         -0.5f, 0.5f, -1.0f,     0.0f, 1.0f,
         0.5f, -0.5f, -1.0f,     1.0f, 0.0f,
@@ -93,51 +94,64 @@
     
     // 开启纹理
     GLuint textCoord = glGetAttribLocation(self.myProgram, "textCoord");
-    glVertexAttribPointer(textCoord, 2, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 5, NULL + 3);
+    glVertexAttribPointer(textCoord, 2, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 5, (float *)NULL + 3);
     glEnableVertexAttribArray(textCoord);
     
     // 加载纹理
-    [self loadTexture:@"hacker.jpg"];
+    [self loadTexture:@"girl"];
+//    glUniform1i(glGetUniformLocation(self.myProgram, "colorMap"), 0);
     
     glDrawArrays(GL_TRIANGLES, 0, 6);
     [self.mContext presentRenderbuffer:GL_RENDERBUFFER];
 }
 
 #pragma mark - 加载纹理
-- (void)loadTexture:(NSString *)imageName {
+- (GLuint)loadTexture:(NSString *)imageName {
     CGImageRef imageRef = [UIImage imageNamed:imageName].CGImage;
     if (!imageRef) {
         NSLog(@"Failed to load image");
-        return;
+        exit(1);
     }
     
     size_t width  = CGImageGetWidth(imageRef);
     size_t height = CGImageGetHeight(imageRef);
     
-   CGColorSpaceRef  colorSpace;
-   void *           bitmapData;
-   unsigned long    bitmapByteCount;
-   unsigned long    bitmapBytesPerRow;
-
-   bitmapBytesPerRow   = (width * 4);// 1
-   bitmapByteCount     = (bitmapBytesPerRow * height);
-
-   colorSpace = CGColorSpaceCreateWithName(kCGColorSpaceGenericRGB);// 2
-   bitmapData = calloc( bitmapByteCount, sizeof(uint8_t) );// 3
-   if (bitmapData == NULL)
-   {
-       fprintf (stderr, "Memory not allocated!");
-       return;
-   }
+    CGColorSpaceRef  colorSpace;
+    void *           bitmapData;
+    unsigned long    bitmapByteCount;
+    unsigned long    bitmapBytesPerRow;
     
-    // 重画图片
+    bitmapBytesPerRow   = (width * 4);// 1
+    bitmapByteCount     = (bitmapBytesPerRow * height);
+    
+    // CGImageGetColorSpace(imageRef);// 2
+    colorSpace = CGColorSpaceCreateWithName(kCGColorSpaceGenericRGB);
+    bitmapData = calloc( bitmapByteCount, sizeof(uint8_t) );// 3
+    if (bitmapData == NULL)
+    {
+        fprintf (stderr, "Memory not allocated!");
+        exit(1);
+    }
+    
+    // 创建上下文
     CGContextRef contextRef = CGBitmapContextCreate(bitmapData, width, height, 8, bitmapBytesPerRow, colorSpace, kCGImageAlphaPremultipliedLast);
     if (contextRef == NULL) {
         free(bitmapData);
         NSLog(@"Context not created!");
-        return;
+        exit(1);
     }
+    // 绘图
     CGContextDrawImage(contextRef, CGRectMake(0, 0, width, height), imageRef);
+    
+    // 图片翻转
+    CGRect rect = CGRectMake(0, 0, width, height);
+    CGContextTranslateCTM(contextRef, rect.origin.x, rect.origin.y);
+    CGContextTranslateCTM(contextRef, 0, rect.size.height);
+    CGContextScaleCTM(contextRef, 1.0, -1.0);
+    CGContextTranslateCTM(contextRef, -rect.origin.x, -rect.origin.y);
+    CGContextDrawImage(contextRef, rect, imageRef);
+    
+    // 释放上下文
     CGContextRelease(contextRef);
     
     // 读取纹理
@@ -153,6 +167,7 @@
     glBindBuffer(GL_TEXTURE_2D, 0);
     
     free(bitmapData);
+    return 0;
 }
 
 #pragma mark - 设置 Frame Buffer
@@ -165,7 +180,7 @@
     glBindFramebuffer(GL_FRAMEBUFFER, self.myColorFrameBuffer);
     // 将 _colorRenderBuffer 装配到 GL_COLOR_ATTACHMENT0 这个装配点上
     glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
-                              GL_RENDERBUFFER, self.myColorFrameBuffer);
+                              GL_RENDERBUFFER, self.myColorRenderBuffer);
 }
 
 #pragma mark - 设置 Render Buffer

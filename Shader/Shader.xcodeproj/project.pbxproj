@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3B38249C24D1CC2F001D6A8B /* hacker.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3B38249B24D1CC2F001D6A8B /* hacker.jpg */; };
 		6DC1B66024D03CE700F8752B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC1B65F24D03CE700F8752B /* AppDelegate.m */; };
 		6DC1B66324D03CE700F8752B /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC1B66224D03CE700F8752B /* SceneDelegate.m */; };
 		6DC1B66624D03CE700F8752B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC1B66524D03CE700F8752B /* ViewController.m */; };
@@ -16,12 +15,12 @@
 		6DC1B66E24D03CE900F8752B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DC1B66C24D03CE900F8752B /* LaunchScreen.storyboard */; };
 		6DC1B67124D03CE900F8752B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC1B67024D03CE900F8752B /* main.m */; };
 		6DCA3D6624D1A2100019177B /* CustomShaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCA3D6524D1A2100019177B /* CustomShaderView.m */; };
+		6DCA3D6A24D261DB0019177B /* girl.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DCA3D6924D261DA0019177B /* girl.png */; };
 		6DE4AD5024D113540006643F /* shaderf.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 6DE4AD4E24D113540006643F /* shaderf.fsh */; };
 		6DE4AD5124D113540006643F /* shaderv.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 6DE4AD4F24D113540006643F /* shaderv.vsh */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3B38249B24D1CC2F001D6A8B /* hacker.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = hacker.jpg; sourceTree = "<group>"; };
 		6DC1B65B24D03CE700F8752B /* Shader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DC1B65E24D03CE700F8752B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		6DC1B65F24D03CE700F8752B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -36,6 +35,7 @@
 		6DC1B67024D03CE900F8752B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6DCA3D6424D1A2100019177B /* CustomShaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomShaderView.h; sourceTree = "<group>"; };
 		6DCA3D6524D1A2100019177B /* CustomShaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomShaderView.m; sourceTree = "<group>"; };
+		6DCA3D6924D261DA0019177B /* girl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = girl.png; path = ../../../../Documents/girl.png; sourceTree = "<group>"; };
 		6DE4AD4E24D113540006643F /* shaderf.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shaderf.fsh; sourceTree = "<group>"; };
 		6DE4AD4F24D113540006643F /* shaderv.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shaderv.vsh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -70,7 +70,7 @@
 		6DC1B65D24D03CE700F8752B /* Shader */ = {
 			isa = PBXGroup;
 			children = (
-				3B38249B24D1CC2F001D6A8B /* hacker.jpg */,
+				6DCA3D6924D261DA0019177B /* girl.png */,
 				6DC1B65E24D03CE700F8752B /* AppDelegate.h */,
 				6DC1B65F24D03CE700F8752B /* AppDelegate.m */,
 				6DC1B66124D03CE700F8752B /* SceneDelegate.h */,
@@ -148,9 +148,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				6DE4AD5124D113540006643F /* shaderv.vsh in Resources */,
-				3B38249C24D1CC2F001D6A8B /* hacker.jpg in Resources */,
 				6DC1B66E24D03CE900F8752B /* LaunchScreen.storyboard in Resources */,
 				6DC1B66B24D03CE900F8752B /* Assets.xcassets in Resources */,
+				6DCA3D6A24D261DB0019177B /* girl.png in Resources */,
 				6DC1B66924D03CE700F8752B /* Main.storyboard in Resources */,
 				6DE4AD5024D113540006643F /* shaderf.fsh in Resources */,
 			);
@@ -309,6 +309,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CODE_SIGN_STYLE = Automatic;
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				INFOPLIST_FILE = Shader/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -326,6 +327,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CODE_SIGN_STYLE = Automatic;
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				INFOPLIST_FILE = Shader/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
