@@ -52,7 +52,6 @@
     NSString *vertFile = [[NSBundle mainBundle] pathForResource:@"shaderv" ofType:@"vsh"];
     NSString *fragFile = [[NSBundle mainBundle] pathForResource:@"shaderf" ofType:@"fsh"];
     
-    
     self.myProgram = [self loadShaders:vertFile frag:fragFile];
     
     // 链接
