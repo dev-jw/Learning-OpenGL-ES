@@ -144,10 +144,18 @@
     
     // 图片翻转
     CGRect rect = CGRectMake(0, 0, width, height);
-    CGContextTranslateCTM(contextRef, rect.origin.x, rect.origin.y);
-    CGContextTranslateCTM(contextRef, 0, rect.size.height);
-    CGContextScaleCTM(contextRef, 1.0, -1.0);
-    CGContextTranslateCTM(contextRef, -rect.origin.x, -rect.origin.y);
+    
+    CGContextTranslateCTM(contextRef, width, height);
+    CGContextRotateCTM(contextRef, -M_PI);
+
+//    CGContextTranslateCTM(contextRef, rect.size.width / 2.0, rect.size.height / 2.0);
+//    CGContextRotateCTM(contextRef, M_PI);
+//    CGContextTranslateCTM(contextRef, -rect.size.width / 2.0, -rect.size.height / 2.0);
+    
+//    CGContextTranslateCTM(contextRef, rect.origin.x, rect.origin.y);
+//    CGContextTranslateCTM(contextRef, 0, rect.size.height);
+//    CGContextScaleCTM(contextRef, -1.0, -1.0);
+//    CGContextTranslateCTM(contextRef, -rect.origin.x, -rect.origin.y);
     CGContextDrawImage(contextRef, rect, imageRef);
     
     // 释放上下文

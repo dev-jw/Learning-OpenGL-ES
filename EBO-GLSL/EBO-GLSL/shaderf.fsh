@@ -18,6 +18,6 @@ void main()
     vec4 mask = varyColor;
     float alpha = 0.3;
     
-    vec4 tempColor = mask * (1.0 - alpha) + weakMask * alpha;
+    vec4 tempColor = weakMask * (1.0 - alpha) + mask * alpha;
     gl_FragColor = tempColor;
 }

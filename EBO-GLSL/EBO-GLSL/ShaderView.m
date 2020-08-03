@@ -27,7 +27,42 @@
 
 @implementation ShaderView
 {
-    float degree;
+    float Xdegree;
+    float Ydegree;
+    float Zdegree;
+
+    BOOL bX;
+    BOOL bY;
+    BOOL bZ;
+    NSTimer* myTimer;
+}
+
+- (IBAction)onX:(id)sender {
+    if (!myTimer) {
+        myTimer = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(onRes:) userInfo:nil repeats:YES];
+    }
+    bX = !bX;
+}
+
+- (IBAction)onY:(id)sender {
+    if (!myTimer) {
+        myTimer = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(onRes:) userInfo:nil repeats:YES];
+    }
+    bY = !bY;
+}
+
+- (IBAction)onZ:(id)sender {
+    if (!myTimer) {
+        myTimer = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(onRes:) userInfo:nil repeats:YES];
+    }
+    bZ = !bZ;
+}
+
+- (void)onRes:(id)sender {
+    Xdegree += bX * 5;
+    Ydegree += bY * 5;
+    Zdegree += bZ * 5;
+    [self render];
 }
 
 + (Class)layerClass {
@@ -120,9 +155,9 @@
 
     KSMatrix4 _rotationMatrix;
     ksMatrixLoadIdentity(&_rotationMatrix);
-    ksRotate(&_rotationMatrix, degree, 1.0, 0.0, 0.0);
-    ksRotate(&_rotationMatrix, degree, 0.0, 1.0, 0.0);
-    ksRotate(&_rotationMatrix, degree, 0.0, 0.0, 1.0);
+    ksRotate(&_rotationMatrix, Xdegree, 1.0, 0.0, 0.0);
+    ksRotate(&_rotationMatrix, Ydegree, 0.0, 1.0, 0.0);
+    ksRotate(&_rotationMatrix, Zdegree, 0.0, 0.0, 1.0);
     
     ksMatrixMultiply(&_modelViewMatrix, &_rotationMatrix, &_modelViewMatrix);
     glUniformMatrix4fv(modelViewMatrixSlot, 1, GL_FALSE, (GLfloat *)&_modelViewMatrix.m[0][0]);
@@ -180,12 +215,9 @@
     CGContextDrawImage(contextRef, CGRectMake(0, 0, width, height), imageRef);
     
     // 图片翻转
-    CGRect rect = CGRectMake(0, 0, width, height);
-    CGContextTranslateCTM(contextRef, rect.origin.x, rect.origin.y);
-    CGContextTranslateCTM(contextRef, 0, rect.size.height);
-    CGContextScaleCTM(contextRef, 1.0, -1.0);
-    CGContextTranslateCTM(contextRef, -rect.origin.x, -rect.origin.y);
-    CGContextDrawImage(contextRef, rect, imageRef);
+    CGContextTranslateCTM(contextRef, width, height);
+    CGContextRotateCTM(contextRef, -M_PI);
+    CGContextDrawImage(contextRef, CGRectMake(0, 0, width, height), imageRef);
     
     // 释放上下文
     CGContextRelease(contextRef);
@@ -219,7 +251,6 @@
         NSLog(@"link error: %@", messageInfo);
         exit(1);
     }else {
-        NSLog(@"link successed");
         glUseProgram(program);
     }
 }
@@ -278,6 +309,7 @@
 #pragma mark - 初始化配置
 - (void)setupLayer {
     self.mEAEGLLayer = (CAEAGLLayer *)self.layer;
+    self.contentScaleFactor = [UIScreen mainScreen].scale;
     self.mEAEGLLayer.opaque = true;
     self.mEAEGLLayer.drawableProperties = @{
         kEAGLDrawablePropertyColorFormat: kEAGLColorFormatRGBA8,
