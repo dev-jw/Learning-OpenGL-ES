@@ -151,7 +151,7 @@
     
     KSMatrix4 _modelViewMatrix;
     ksMatrixLoadIdentity(&_modelViewMatrix);
-    ksTranslate(&_modelViewMatrix, 0.0, 0.0, -10.0);
+    ksTranslate(&_modelViewMatrix, 0.0, 0.0, -8.0);
 
     KSMatrix4 _rotationMatrix;
     ksMatrixLoadIdentity(&_rotationMatrix);
@@ -172,8 +172,10 @@
 
     glEnable(GL_CULL_FACE);
     glEnable(GL_DEPTH_TEST);
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    
+//    并不需要开启混合，因为是单个图层
+//    glEnable(GL_BLEND);
+//    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     glDrawElements(GL_TRIANGLES, mCount, GL_UNSIGNED_INT, indices);
     
@@ -212,7 +214,7 @@
         exit(1);
     }
     
-    CGContextDrawImage(contextRef, CGRectMake(0, 0, width, height), imageRef);
+//    CGContextDrawImage(contextRef, CGRectMake(0, 0, width, height), imageRef);
     
     // 图片翻转
     CGContextTranslateCTM(contextRef, width, height);
