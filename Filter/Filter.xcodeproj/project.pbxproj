@@ -10,6 +10,12 @@
 		3B2CE79524DFAC7900C15E43 /* split.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3B2CE79424DFAC7900C15E43 /* split.fsh */; };
 		3B2CE79C24DFF74F00C15E43 /* normal.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3B2CE79A24DFF74F00C15E43 /* normal.fsh */; };
 		3B2CE79D24DFF74F00C15E43 /* normal.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 3B2CE79B24DFF74F00C15E43 /* normal.vsh */; };
+		3B2CE7A124E0379D00C15E43 /* soul.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3B2CE7A024E0379D00C15E43 /* soul.fsh */; };
+		3B2CE7A324E037AE00C15E43 /* scale.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 3B2CE7A224E037AE00C15E43 /* scale.vsh */; };
+		3B2CE7A624E037EA00C15E43 /* shake.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3B2CE7A524E037EA00C15E43 /* shake.fsh */; };
+		3B2CE7AA24E0381800C15E43 /* flash.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3B2CE7A924E0381800C15E43 /* flash.fsh */; };
+		3B2CE7AE24E0387300C15E43 /* glitch.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3B2CE7AD24E0387300C15E43 /* glitch.fsh */; };
+		3B2CE7B124E038A000C15E43 /* illusory.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3B2CE7B024E038A000C15E43 /* illusory.fsh */; };
 		3B2E164524DEAB3200A22FD5 /* FilterBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2E164424DEAB3200A22FD5 /* FilterBar.m */; };
 		3B331BFC24DD9F21000CC0B1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B331BFB24DD9F21000CC0B1 /* AppDelegate.m */; };
 		3B331BFF24DD9F21000CC0B1 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B331BFE24DD9F21000CC0B1 /* SceneDelegate.m */; };
@@ -25,6 +31,12 @@
 		3B2CE79424DFAC7900C15E43 /* split.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = split.fsh; sourceTree = "<group>"; };
 		3B2CE79A24DFF74F00C15E43 /* normal.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = normal.fsh; sourceTree = "<group>"; };
 		3B2CE79B24DFF74F00C15E43 /* normal.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = normal.vsh; sourceTree = "<group>"; };
+		3B2CE7A024E0379D00C15E43 /* soul.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = soul.fsh; sourceTree = "<group>"; };
+		3B2CE7A224E037AE00C15E43 /* scale.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = scale.vsh; sourceTree = "<group>"; };
+		3B2CE7A524E037EA00C15E43 /* shake.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shake.fsh; sourceTree = "<group>"; };
+		3B2CE7A924E0381800C15E43 /* flash.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = flash.fsh; sourceTree = "<group>"; };
+		3B2CE7AD24E0387300C15E43 /* glitch.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = glitch.fsh; sourceTree = "<group>"; };
+		3B2CE7B024E038A000C15E43 /* illusory.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = illusory.fsh; sourceTree = "<group>"; };
 		3B2E164324DEAB3200A22FD5 /* FilterBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilterBar.h; sourceTree = "<group>"; };
 		3B2E164424DEAB3200A22FD5 /* FilterBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FilterBar.m; sourceTree = "<group>"; };
 		3B331BF724DD9F21000CC0B1 /* Filter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Filter.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -62,10 +74,64 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
+		3B2CE79E24E0374D00C15E43 /* Scale */ = {
+			isa = PBXGroup;
+			children = (
+				3B2CE7A224E037AE00C15E43 /* scale.vsh */,
+			);
+			path = Scale;
+			sourceTree = "<group>";
+		};
+		3B2CE79F24E0377900C15E43 /* Soul */ = {
+			isa = PBXGroup;
+			children = (
+				3B2CE7A024E0379D00C15E43 /* soul.fsh */,
+			);
+			path = Soul;
+			sourceTree = "<group>";
+		};
+		3B2CE7A424E037CD00C15E43 /* Shake */ = {
+			isa = PBXGroup;
+			children = (
+				3B2CE7A524E037EA00C15E43 /* shake.fsh */,
+			);
+			path = Shake;
+			sourceTree = "<group>";
+		};
+		3B2CE7A724E037F600C15E43 /* Flash */ = {
+			isa = PBXGroup;
+			children = (
+				3B2CE7A924E0381800C15E43 /* flash.fsh */,
+			);
+			path = Flash;
+			sourceTree = "<group>";
+		};
+		3B2CE7AC24E0384800C15E43 /* Glitch */ = {
+			isa = PBXGroup;
+			children = (
+				3B2CE7AD24E0387300C15E43 /* glitch.fsh */,
+			);
+			path = Glitch;
+			sourceTree = "<group>";
+		};
+		3B2CE7AF24E0388200C15E43 /* Illusory */ = {
+			isa = PBXGroup;
+			children = (
+				3B2CE7B024E038A000C15E43 /* illusory.fsh */,
+			);
+			path = Illusory;
+			sourceTree = "<group>";
+		};
 		3B2E163524DE8A7B00A22FD5 /* Filter */ = {
 			isa = PBXGroup;
 			children = (
+				3B2CE7AF24E0388200C15E43 /* Illusory */,
+				3B2CE7AC24E0384800C15E43 /* Glitch */,
+				3B2CE7A724E037F600C15E43 /* Flash */,
+				3B2CE7A424E037CD00C15E43 /* Shake */,
 				3B2CE79924DFF74F00C15E43 /* Base */,
+				3B2CE79E24E0374D00C15E43 /* Scale */,
+				3B2CE79F24E0377900C15E43 /* Soul */,
 				3B2E163E24DE9BC000A22FD5 /* Split */,
 			);
 			path = Filter;
@@ -190,12 +256,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B2CE7A624E037EA00C15E43 /* shake.fsh in Resources */,
 				3B331C0A24DD9F22000CC0B1 /* LaunchScreen.storyboard in Resources */,
+				3B2CE7A324E037AE00C15E43 /* scale.vsh in Resources */,
 				3B2CE79524DFAC7900C15E43 /* split.fsh in Resources */,
+				3B2CE7A124E0379D00C15E43 /* soul.fsh in Resources */,
 				3B2CE79C24DFF74F00C15E43 /* normal.fsh in Resources */,
 				3B2CE79D24DFF74F00C15E43 /* normal.vsh in Resources */,
+				3B2CE7B124E038A000C15E43 /* illusory.fsh in Resources */,
 				3B331C1424DDA5F3000CC0B1 /* wlop.png in Resources */,
+				3B2CE7AE24E0387300C15E43 /* glitch.fsh in Resources */,
 				3B331C0724DD9F22000CC0B1 /* Assets.xcassets in Resources */,
+				3B2CE7AA24E0381800C15E43 /* flash.fsh in Resources */,
 				3B331C0524DD9F21000CC0B1 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
