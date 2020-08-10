@@ -65,6 +65,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3B29773124E18CF50036CE4D /* Douyin */ = {
+			isa = PBXGroup;
+			children = (
+				3B2CE7AF24E0388200C15E43 /* Illusory */,
+				3B2CE7AC24E0384800C15E43 /* Glitch */,
+				3B2CE7A724E037F600C15E43 /* Flash */,
+				3B2CE7A424E037CD00C15E43 /* Shake */,
+				3B2CE79E24E0374D00C15E43 /* Scale */,
+				3B2CE79F24E0377900C15E43 /* Soul */,
+			);
+			path = Douyin;
+			sourceTree = "<group>";
+		};
 		3B2CE79924DFF74F00C15E43 /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -125,13 +138,8 @@
 		3B2E163524DE8A7B00A22FD5 /* Filter */ = {
 			isa = PBXGroup;
 			children = (
-				3B2CE7AF24E0388200C15E43 /* Illusory */,
-				3B2CE7AC24E0384800C15E43 /* Glitch */,
-				3B2CE7A724E037F600C15E43 /* Flash */,
-				3B2CE7A424E037CD00C15E43 /* Shake */,
+				3B29773124E18CF50036CE4D /* Douyin */,
 				3B2CE79924DFF74F00C15E43 /* Base */,
-				3B2CE79E24E0374D00C15E43 /* Scale */,
-				3B2CE79F24E0377900C15E43 /* Soul */,
 				3B2E163E24DE9BC000A22FD5 /* Split */,
 			);
 			path = Filter;

@@ -1,6 +1,6 @@
-attribute vec4 Position;
-attribute vec2 TextureCoords;
-varying vec2 TextureCoordsVarying;
+attribute vec4 position;
+attribute vec2 inputTextureCoordinate;
+varying vec2 textureCoordinate;
 
 uniform float Time;
 
@@ -13,6 +13,6 @@ void main (void) {
     float time = mod(Time, duration);
     float amplitude = 1.0 + maxAmplitude * abs(sin(time * (PI / duration)));
     
-    gl_Position = vec4(Position.x * amplitude, Position.y * amplitude, Position.zw);
-    TextureCoordsVarying = TextureCoords;
+    gl_Position = vec4(position.x * amplitude, position.y * amplitude, position.zw);
+    textureCoordinate = inputTextureCoordinate;
 }

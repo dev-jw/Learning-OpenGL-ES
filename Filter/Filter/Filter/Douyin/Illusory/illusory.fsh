@@ -1,7 +1,7 @@
 precision highp float;
 
-uniform sampler2D Texture;
-varying vec2 TextureCoordsVarying;
+uniform sampler2D inputImageTexture;
+varying vec2 textureCoordinate;
 
 uniform float Time;
 
@@ -12,7 +12,7 @@ vec4 getMask(float time, vec2 textureCoords, float padding) {
     vec2 translation = vec2(sin(time * (PI * 2.0 / duration)),
                             cos(time * (PI * 2.0 / duration)));
     vec2 translationTextureCoords = textureCoords + padding * translation;
-    vec4 mask = texture2D(Texture, translationTextureCoords);
+    vec4 mask = texture2D(inputImageTexture, translationTextureCoords);
     
     return mask;
 }
@@ -27,7 +27,7 @@ void main (void) {
     
     float scale = 1.2;
     float padding = 0.5 * (1.0 - 1.0 / scale);
-    vec2 textureCoords = vec2(0.5, 0.5) + (TextureCoordsVarying - vec2(0.5, 0.5)) / scale;
+    vec2 textureCoords = vec2(0.5, 0.5) + (textureCoordinate - vec2(0.5, 0.5)) / scale;
     
     float hideTime = 0.9;
     float timeGap = 0.2;

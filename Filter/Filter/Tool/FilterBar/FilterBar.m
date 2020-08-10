@@ -27,7 +27,7 @@
 
 - (void)buildSubview {
     
-    self.titleLbl               = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, cellHeight - 20, cellHeight - 20)];
+    self.titleLbl               = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, cellHeight - 40, cellHeight - 40)];
     self.titleLbl.font          = [UIFont systemFontOfSize:16];
     self.titleLbl.textColor     = [UIColor blackColor];
     self.titleLbl.textAlignment = NSTextAlignmentCenter;
@@ -73,9 +73,10 @@
     [collectionViewFlowLayout setMinimumLineSpacing:0];
     
     collectionViewFlowLayout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
-    collectionViewFlowLayout.itemSize = CGSizeMake(cellHeight, cellHeight);
+    collectionViewFlowLayout.itemSize = CGSizeMake(cellHeight - 20, cellHeight - 20);
     
-    self.collectionView = [[UICollectionView alloc] initWithFrame:self.bounds
+    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 40,
+                                                                             self.bounds.size.width, self.bounds.size.height)
                                              collectionViewLayout:collectionViewFlowLayout];
     
     self.collectionView.backgroundColor = [UIColor whiteColor];

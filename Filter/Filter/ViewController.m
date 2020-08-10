@@ -77,7 +77,7 @@ typedef struct {
     
     // 传入时间
     CGFloat currentTime = self.displayLink.timestamp - self.startTimeInterval;
-    GLuint time = glGetUniformLocation(self.program, "time");
+    GLuint time = glGetUniformLocation(self.program, "Time");
     glUniform1f(time, currentTime);
     
     // 清除画布
@@ -109,7 +109,7 @@ typedef struct {
 
 - (void)startFilterWithHorizontal:(float)horizontal Vertical:(float)vertical {
     
-    NSString *fragShaderPath = [[NSBundle mainBundle] pathForResource:@"split" ofType:@"fsh"];
+    NSString *fragShaderPath = [[NSBundle mainBundle] pathForResource:@"soul" ofType:@"fsh"];
     NSString *fragShaderString = [NSString stringWithContentsOfFile:fragShaderPath encoding:NSUTF8StringEncoding error:nil];
     
     GLuint program;
