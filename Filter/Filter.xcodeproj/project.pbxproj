@@ -25,6 +25,12 @@
 		3B331C0A24DD9F22000CC0B1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B331C0824DD9F22000CC0B1 /* LaunchScreen.storyboard */; };
 		3B331C0D24DD9F22000CC0B1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B331C0C24DD9F22000CC0B1 /* main.m */; };
 		3B331C1424DDA5F3000CC0B1 /* wlop.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B331C1324DDA5F3000CC0B1 /* wlop.png */; };
+		6D1D1F8F24E269D700C98225 /* triangle-mosaic.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 6D1D1F8924E269D600C98225 /* triangle-mosaic.fsh */; };
+		6D1D1F9024E269D700C98225 /* reverse.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 6D1D1F8A24E269D600C98225 /* reverse.fsh */; };
+		6D1D1F9124E269D700C98225 /* square-mosaic.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 6D1D1F8B24E269D600C98225 /* square-mosaic.fsh */; };
+		6D1D1F9224E269D700C98225 /* gray.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 6D1D1F8C24E269D600C98225 /* gray.fsh */; };
+		6D1D1F9324E269D700C98225 /* whirlpool.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 6D1D1F8D24E269D600C98225 /* whirlpool.fsh */; };
+		6D1D1F9424E269D700C98225 /* hexagon-mosaic.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 6D1D1F8E24E269D600C98225 /* hexagon-mosaic.fsh */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +58,12 @@
 		3B331C0B24DD9F22000CC0B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3B331C0C24DD9F22000CC0B1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3B331C1324DDA5F3000CC0B1 /* wlop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wlop.png; sourceTree = "<group>"; };
+		6D1D1F8924E269D600C98225 /* triangle-mosaic.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "triangle-mosaic.fsh"; sourceTree = "<group>"; };
+		6D1D1F8A24E269D600C98225 /* reverse.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = reverse.fsh; sourceTree = "<group>"; };
+		6D1D1F8B24E269D600C98225 /* square-mosaic.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "square-mosaic.fsh"; sourceTree = "<group>"; };
+		6D1D1F8C24E269D600C98225 /* gray.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = gray.fsh; sourceTree = "<group>"; };
+		6D1D1F8D24E269D600C98225 /* whirlpool.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = whirlpool.fsh; sourceTree = "<group>"; };
+		6D1D1F8E24E269D600C98225 /* hexagon-mosaic.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "hexagon-mosaic.fsh"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +150,7 @@
 		3B2E163524DE8A7B00A22FD5 /* Filter */ = {
 			isa = PBXGroup;
 			children = (
+				6D1D1F8824E2692D00C98225 /* Common */,
 				3B29773124E18CF50036CE4D /* Douyin */,
 				3B2CE79924DFF74F00C15E43 /* Base */,
 				3B2E163E24DE9BC000A22FD5 /* Split */,
@@ -207,6 +220,19 @@
 			path = Filter;
 			sourceTree = "<group>";
 		};
+		6D1D1F8824E2692D00C98225 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				6D1D1F8C24E269D600C98225 /* gray.fsh */,
+				6D1D1F8E24E269D600C98225 /* hexagon-mosaic.fsh */,
+				6D1D1F8A24E269D600C98225 /* reverse.fsh */,
+				6D1D1F8B24E269D600C98225 /* square-mosaic.fsh */,
+				6D1D1F8924E269D600C98225 /* triangle-mosaic.fsh */,
+				6D1D1F8D24E269D600C98225 /* whirlpool.fsh */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -267,16 +293,22 @@
 				3B2CE7A624E037EA00C15E43 /* shake.fsh in Resources */,
 				3B331C0A24DD9F22000CC0B1 /* LaunchScreen.storyboard in Resources */,
 				3B2CE7A324E037AE00C15E43 /* scale.vsh in Resources */,
+				6D1D1F9424E269D700C98225 /* hexagon-mosaic.fsh in Resources */,
 				3B2CE79524DFAC7900C15E43 /* split.fsh in Resources */,
 				3B2CE7A124E0379D00C15E43 /* soul.fsh in Resources */,
 				3B2CE79C24DFF74F00C15E43 /* normal.fsh in Resources */,
 				3B2CE79D24DFF74F00C15E43 /* normal.vsh in Resources */,
+				6D1D1F9024E269D700C98225 /* reverse.fsh in Resources */,
 				3B2CE7B124E038A000C15E43 /* illusory.fsh in Resources */,
 				3B331C1424DDA5F3000CC0B1 /* wlop.png in Resources */,
+				6D1D1F9124E269D700C98225 /* square-mosaic.fsh in Resources */,
 				3B2CE7AE24E0387300C15E43 /* glitch.fsh in Resources */,
 				3B331C0724DD9F22000CC0B1 /* Assets.xcassets in Resources */,
 				3B2CE7AA24E0381800C15E43 /* flash.fsh in Resources */,
+				6D1D1F9324E269D700C98225 /* whirlpool.fsh in Resources */,
 				3B331C0524DD9F21000CC0B1 /* Main.storyboard in Resources */,
+				6D1D1F8F24E269D700C98225 /* triangle-mosaic.fsh in Resources */,
+				6D1D1F9224E269D700C98225 /* gray.fsh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,14 +464,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 57HG9ZXHQZ;
+				DEVELOPMENT_TEAM = D85977TD5F;
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				INFOPLIST_FILE = Filter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.zsy.Filter;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zsy.filter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -450,14 +482,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 57HG9ZXHQZ;
+				DEVELOPMENT_TEAM = D85977TD5F;
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				INFOPLIST_FILE = Filter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.zsy.Filter;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zsy.filter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

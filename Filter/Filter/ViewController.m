@@ -29,13 +29,15 @@ typedef struct {
 
 @property (nonatomic, assign) GLuint vertexBuffer;
 
-@property (nonatomic, strong) NSArray *dataArr;
+@property (nonatomic, strong) NSArray *dataArr, *douyinArr, *commonArr;
 
 // 用于刷新屏幕
 @property (nonatomic, strong) CADisplayLink *displayLink;
 
 // 开始的时间戳
 @property (nonatomic, assign) NSTimeInterval startTimeInterval;
+
+@property (nonatomic, assign) NSInteger section;
 
 @end
 
@@ -97,28 +99,28 @@ typedef struct {
     
     glUseProgram(self.program);
     glBindBuffer(GL_ARRAY_BUFFER, self.vertexBuffer);
-
+    
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
     [self.context presentRenderbuffer:GL_RENDERBUFFER];
 }
 
 #pragma mark - Shader
 - (void)setupNoramlShader {
+    [self setupFragmentShader:@"split"];
     [self startFilterWithHorizontal:1.0 Vertical:1.0];
 }
 
-- (void)startFilterWithHorizontal:(float)horizontal Vertical:(float)vertical {
-    
-    NSString *fragShaderPath = [[NSBundle mainBundle] pathForResource:@"soul" ofType:@"fsh"];
+- (void)setupFragmentShader:(NSString *)fragShaderName {
+    NSString *fragShaderPath = [[NSBundle mainBundle] pathForResource:fragShaderName ofType:@"fsh"];
     NSString *fragShaderString = [NSString stringWithContentsOfFile:fragShaderPath encoding:NSUTF8StringEncoding error:nil];
     
     GLuint program;
-    if (!self.program) {
+//    if (!self.program) {
         program = [self createProgramWithFragmentShader:fragShaderString];
-    }else {
-        program = self.program;
-    }
-
+//    }else {
+//        program = self.program;
+//    }
+    
     glUseProgram(program);
     
     GLuint textureSlot = glGetUniformLocation(program, "inputImageTexture");
@@ -134,14 +136,16 @@ typedef struct {
     glEnableVertexAttribArray(textureCoordSlot);
     glVertexAttribPointer(textureCoordSlot, 2, GL_FLOAT, GL_FALSE, sizeof(SenceVertex), NULL + offsetof(SenceVertex, textureCoord));
     
-    
-    GLuint horizontalSlot = glGetUniformLocation(program, "horizontal");
-    glUniform1f(horizontalSlot, horizontal);
-
-    GLuint verticalSlot = glGetUniformLocation(program, "vertical");
-    glUniform1f(verticalSlot, vertical);
-        
     self.program = program;
+}
+
+- (void)startFilterWithHorizontal:(float)horizontal Vertical:(float)vertical {
+    
+    GLuint horizontalSlot = glGetUniformLocation(self.program, "horizontal");
+    glUniform1f(horizontalSlot, horizontal);
+    
+    GLuint verticalSlot = glGetUniformLocation(self.program, "vertical");
+    glUniform1f(verticalSlot, vertical);
 }
 
 - (GLuint)createProgramWithFragmentShader:(NSString *)fragShaderString {
@@ -149,10 +153,10 @@ typedef struct {
     
     NSString *verShaderPath = [[NSBundle mainBundle] pathForResource:@"normal" ofType:@"vsh"];
     NSString *verShaderString = [NSString stringWithContentsOfFile:verShaderPath encoding:NSUTF8StringEncoding error:nil];
-
+    
     [self compileShader:&vertexShader type:GL_VERTEX_SHADER string:verShaderString];
     [self compileShader:&fragmentShader type:GL_FRAGMENT_SHADER string:fragShaderString];
-
+    
     GLuint program = glCreateProgram();
     glAttachShader(program, vertexShader);
     glAttachShader(program, fragmentShader);
@@ -228,7 +232,7 @@ typedef struct {
     [self.view.layer addSublayer:layer];
     
     [self bindRenderLayer:layer];
-        
+    
     NSString *imagePath = [[NSBundle mainBundle] pathForResource:@"wlop" ofType:@"png"];
     UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
     
@@ -242,7 +246,7 @@ typedef struct {
     glBufferData(GL_ARRAY_BUFFER, sizeof(SenceVertex) * 4, self.vertices, GL_STATIC_DRAW);
     
     [self setupNoramlShader];
-
+    
     self.vertexBuffer = buffer;
 }
 
@@ -278,14 +282,14 @@ typedef struct {
         exit(1);
     }
     
-//    CGContextTranslateCTM(contextRef, width, height);
-//    CGContextRotateCTM(contextRef, -M_PI);
+    //    CGContextTranslateCTM(contextRef, width, height);
+    //    CGContextRotateCTM(contextRef, -M_PI);
     CGContextTranslateCTM(contextRef, 0, height);
     CGContextScaleCTM(contextRef, 1.0f, -1.0f);
-
+    
     CGContextDrawImage(contextRef, CGRectMake(0, 0, width, height), imageRef);
     CGContextRelease(contextRef);
-
+    
     GLuint textureID;
     glGenTextures(1, &textureID);
     glBindTexture(GL_TEXTURE_2D, textureID);
@@ -327,31 +331,56 @@ typedef struct {
 }
 
 - (void)setupFilterBar {
-
+    
     BOOL iPhoneXSeries = false;
     if (UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
-         iPhoneXSeries = true;
+        iPhoneXSeries = true;
     }
-
+    
     CGFloat width = [UIScreen mainScreen].bounds.size.width;
     CGFloat height = [UIScreen mainScreen].bounds.size.height;
     CGFloat y = height - cellHeight - (iPhoneXSeries ? 34.0f : 0);
     FilterBar * bar = [[FilterBar alloc] initWithFrame:CGRectMake(0, y, width, cellHeight)];
+    
     bar.dataSource = self.dataArr.mutableCopy;
-    bar.backgroundColor = [UIColor redColor];
+    
     [self.view addSubview:bar];
     self.bar = bar;
-
+    
     bar.selectedIndex = ^(NSInteger index) {
         if (index == 0) {
             [self setupNoramlShader];
         }else {
-            NSString *filterName = self.dataArr[index];
-            NSString *aspect = [filterName componentsSeparatedByString:@"分屏"].firstObject;
-            NSArray *vec2 = [aspect componentsSeparatedByString:@":"];
-            
-            [self startFilterWithHorizontal:[vec2.firstObject floatValue] Vertical:[vec2.lastObject floatValue]];
+            if (self.section == 1) {
+                NSString *filterName = self.dataArr[index];
+                NSString *aspect = [filterName componentsSeparatedByString:@"分屏"].firstObject;
+                NSArray *vec2 = [aspect componentsSeparatedByString:@":"];
+                
+                [self startFilterWithHorizontal:[vec2.firstObject floatValue] Vertical:[vec2.lastObject floatValue]];
+            }else {
+                [self setupFragmentShader:[self selectShaderNameWithIndex:index]];
+            }
             [self draw];
+        }
+    };
+    
+    __weak __typeof(FilterBar *)weakBar= bar;
+    
+    bar.btnClicked = ^(NSInteger index) {
+        switch (index) {
+            case 1:
+                weakBar.dataSource = self.dataArr.mutableCopy;
+                [self setupFragmentShader:@"split"];
+                self.section = 1;
+                break;
+            case 2:
+                weakBar.dataSource = self.douyinArr.mutableCopy;
+                self.section = 2;
+                break;
+            case 3:
+                weakBar.dataSource = self.commonArr.mutableCopy;
+                self.section = 3;
+                break;
         }
     };
 }
@@ -370,18 +399,76 @@ typedef struct {
     return backingHeight;
 }
 
+- (NSString *)selectShaderNameWithIndex:(NSInteger)index {
+    
+    if (self.section == 2) {
+        NSArray * arr = @[
+            @"soul",
+            @"illusory",
+            @"shake",
+            @"glitch",
+            @"flash",
+        ];
+        return arr[index - 1];
+    }
+    
+    if (self.section == 3) {
+        NSArray * arr = @[
+            @"gray",
+            @"whirlpool",
+            @"reverse",
+            @"square-mosaic",
+            @"hexagon-mosaic",
+            @"triangle-mosaic"
+        ];
+        return arr[index - 1];
+    }
+    
+    return  @"";
+}
+
 - (NSArray *)dataArr {
     if (_dataArr == nil) {
         _dataArr = @[
-           @"无",
-           @"1:2分屏",
-           @"1:3分屏",
-           @"2:2分屏",
-           @"3:2分屏",
-           @"3:3分屏",
-           @"4:4分屏",
+            @"无",
+            @"1:2分屏",
+            @"1:3分屏",
+            @"2:2分屏",
+            @"3:2分屏",
+            @"3:3分屏",
+            @"4:4分屏",
         ];
     }
     return _dataArr;
 }
+
+- (NSArray *)douyinArr {
+    if (_douyinArr == nil) {
+        _douyinArr = @[
+            @"无",
+            @"灵魂出窍",
+            @"幻觉",
+            @"晕眩",
+            @"毛刺",
+            @"闪白",
+        ];
+    }
+    return _douyinArr;
+}
+
+- (NSArray *)commonArr {
+    if (_commonArr == nil) {
+        _commonArr = @[
+            @"无",
+            @"灰度",
+            @"旋涡",
+            @"颠倒",
+            @"马赛克-正方形",
+            @"马赛克-六边形",
+            @"马赛克-三角形",
+        ];
+    }
+    return _commonArr;
+}
+
 @end

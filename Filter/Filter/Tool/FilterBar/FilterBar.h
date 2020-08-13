@@ -12,6 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef void(^FilterBarSelectedIndex)(NSInteger index);
 
+typedef void(^FilterBarTopBtnClickedAtIndex)(NSInteger index);
+
+
 static CGFloat cellHeight = 100;
 
 @class FilterModel;
@@ -21,6 +24,9 @@ static CGFloat cellHeight = 100;
 @property (nonatomic, strong) NSArray *dataSource;
 
 @property (nonatomic, copy) FilterBarSelectedIndex selectedIndex;
+
+@property (nonatomic, copy) FilterBarTopBtnClickedAtIndex btnClicked;
+
 
 @end
 
