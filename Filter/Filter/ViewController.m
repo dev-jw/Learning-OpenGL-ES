@@ -106,6 +106,7 @@ typedef struct {
 
 #pragma mark - Shader
 - (void)setupNoramlShader {
+    self.section = 1;
     [self setupFragmentShader:@"split"];
     [self startFilterWithHorizontal:1.0 Vertical:1.0];
 }

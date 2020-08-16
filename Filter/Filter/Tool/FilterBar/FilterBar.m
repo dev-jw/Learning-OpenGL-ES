@@ -51,6 +51,8 @@
 
 @property (nonatomic, assign) NSInteger currentIndex;
 
+@property (nonatomic, strong) UIButton *btn1, *btn2, *btn3;
+
 @end
 
 @implementation FilterBar
@@ -77,21 +79,28 @@
     UIButton * btn1 = [UIButton buttonWithType:UIButtonTypeCustom];
     [btn1 setTitle:@"分屏" forState:UIControlStateNormal];
     [btn1 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [btn1 setTitleColor:[UIColor blueColor] forState:UIControlStateSelected];
     [btn1 addTarget:self action:@selector(btnAction1) forControlEvents:UIControlEventTouchUpInside];
     [stack addArrangedSubview:btn1];
-
+    self.btn1 = btn1;
+    self.btn1.selected = true;
+    
     UIButton * btn2 = [UIButton buttonWithType:UIButtonTypeCustom];
     [btn2 setTitle:@"抖音" forState:UIControlStateNormal];
     [btn2 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [btn2 setTitleColor:[UIColor blueColor] forState:UIControlStateSelected];
     [btn2 addTarget:self action:@selector(btnAction2) forControlEvents:UIControlEventTouchUpInside];
     [stack addArrangedSubview:btn2];
-    
+    self.btn2 = btn2;
+
     UIButton * btn3 = [UIButton buttonWithType:UIButtonTypeCustom];
     [btn3 setTitle:@"通用" forState:UIControlStateNormal];
     [btn3 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [btn3 setTitleColor:[UIColor blueColor] forState:UIControlStateSelected];
     [btn3 addTarget:self action:@selector(btnAction3) forControlEvents:UIControlEventTouchUpInside];
     [stack addArrangedSubview:btn3];
-    
+    self.btn3 = btn3;
+
     UICollectionViewFlowLayout *collectionViewFlowLayout = [[UICollectionViewFlowLayout alloc] init];
     [collectionViewFlowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
     [collectionViewFlowLayout setMinimumInteritemSpacing:0];
@@ -116,18 +125,27 @@
 
 - (void)btnAction1 {
     if (self.btnClicked) {
+        self.btn1.selected = true;
+        self.btn2.selected = false;
+        self.btn3.selected = false;
         self.btnClicked(1);
     }
 }
 
 - (void)btnAction2 {
     if (self.btnClicked) {
+        self.btn1.selected = false;
+        self.btn2.selected = true;
+        self.btn3.selected = false;
         self.btnClicked(2);
     }
 }
 
 - (void)btnAction3 {
     if (self.btnClicked) {
+        self.btn1.selected = false;
+        self.btn2.selected = false;
+        self.btn3.selected = true;
         self.btnClicked(3);
     }
 }
