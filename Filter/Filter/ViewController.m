@@ -350,7 +350,7 @@ typedef struct {
     
     bar.selectedIndex = ^(NSInteger index) {
         if (index == 0) {
-            [self setupNoramlShader];
+            [self setupFragmentShader:@"normal"];
         }else {
             if (self.section == 1) {
                 NSString *filterName = self.dataArr[index];
@@ -376,10 +376,12 @@ typedef struct {
                 break;
             case 2:
                 weakBar.dataSource = self.douyinArr.mutableCopy;
+                [self setupFragmentShader:@"normal"];
                 self.section = 2;
                 break;
             case 3:
                 weakBar.dataSource = self.commonArr.mutableCopy;
+                [self setupFragmentShader:@"normal"];
                 self.section = 3;
                 break;
         }
@@ -417,6 +419,7 @@ typedef struct {
         NSArray * arr = @[
             @"gray",
             @"whirlpool",
+            @"relief",
             @"reverse",
             @"square-mosaic",
             @"hexagon-mosaic",
@@ -463,6 +466,7 @@ typedef struct {
             @"无",
             @"灰度",
             @"旋涡",
+            @"浮雕",
             @"颠倒",
             @"马赛克-正方形",
             @"马赛克-六边形",

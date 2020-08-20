@@ -128,6 +128,12 @@
         self.btn1.selected = true;
         self.btn2.selected = false;
         self.btn3.selected = false;
+        self.currentIndex = 0;
+        [self.collectionView reloadData];
+        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath
+                                                      indexPathForRow:0 inSection:0]
+                                    atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally
+                                            animated:YES];
         self.btnClicked(1);
     }
 }
@@ -137,6 +143,12 @@
         self.btn1.selected = false;
         self.btn2.selected = true;
         self.btn3.selected = false;
+        self.currentIndex = 0;
+        [self.collectionView reloadData];
+        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath
+                                                      indexPathForRow:0 inSection:0]
+                                    atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally
+                                            animated:YES];
         self.btnClicked(2);
     }
 }
@@ -146,6 +158,12 @@
         self.btn1.selected = false;
         self.btn2.selected = false;
         self.btn3.selected = true;
+        self.currentIndex = 0;
+        [self.collectionView reloadData];
+        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath
+                                                      indexPathForRow:0 inSection:0]
+                                    atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally
+                                            animated:YES];
         self.btnClicked(3);
     }
 }
@@ -170,6 +188,11 @@
 
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+        
+    if (self.currentIndex == indexPath.row) {
+        return;
+    }
+    
     self.currentIndex = indexPath.row;
     [collectionView reloadData];
     [collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];

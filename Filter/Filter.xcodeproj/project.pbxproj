@@ -25,6 +25,7 @@
 		3B331C0A24DD9F22000CC0B1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B331C0824DD9F22000CC0B1 /* LaunchScreen.storyboard */; };
 		3B331C0D24DD9F22000CC0B1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B331C0C24DD9F22000CC0B1 /* main.m */; };
 		3B331C1424DDA5F3000CC0B1 /* wlop.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B331C1324DDA5F3000CC0B1 /* wlop.png */; };
+		6D085BF624EA62D800DBE577 /* relief.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 6D085BF524EA62D800DBE577 /* relief.fsh */; };
 		6D1D1F8F24E269D700C98225 /* triangle-mosaic.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 6D1D1F8924E269D600C98225 /* triangle-mosaic.fsh */; };
 		6D1D1F9024E269D700C98225 /* reverse.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 6D1D1F8A24E269D600C98225 /* reverse.fsh */; };
 		6D1D1F9124E269D700C98225 /* square-mosaic.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 6D1D1F8B24E269D600C98225 /* square-mosaic.fsh */; };
@@ -58,6 +59,7 @@
 		3B331C0B24DD9F22000CC0B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3B331C0C24DD9F22000CC0B1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3B331C1324DDA5F3000CC0B1 /* wlop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wlop.png; sourceTree = "<group>"; };
+		6D085BF524EA62D800DBE577 /* relief.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = relief.fsh; sourceTree = "<group>"; };
 		6D1D1F8924E269D600C98225 /* triangle-mosaic.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "triangle-mosaic.fsh"; sourceTree = "<group>"; };
 		6D1D1F8A24E269D600C98225 /* reverse.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = reverse.fsh; sourceTree = "<group>"; };
 		6D1D1F8B24E269D600C98225 /* square-mosaic.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "square-mosaic.fsh"; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 				6D1D1F8B24E269D600C98225 /* square-mosaic.fsh */,
 				6D1D1F8924E269D600C98225 /* triangle-mosaic.fsh */,
 				6D1D1F8D24E269D600C98225 /* whirlpool.fsh */,
+				6D085BF524EA62D800DBE577 /* relief.fsh */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -294,6 +297,7 @@
 				3B331C0A24DD9F22000CC0B1 /* LaunchScreen.storyboard in Resources */,
 				3B2CE7A324E037AE00C15E43 /* scale.vsh in Resources */,
 				6D1D1F9424E269D700C98225 /* hexagon-mosaic.fsh in Resources */,
+				6D085BF624EA62D800DBE577 /* relief.fsh in Resources */,
 				3B2CE79524DFAC7900C15E43 /* split.fsh in Resources */,
 				3B2CE7A124E0379D00C15E43 /* soul.fsh in Resources */,
 				3B2CE79C24DFF74F00C15E43 /* normal.fsh in Resources */,
